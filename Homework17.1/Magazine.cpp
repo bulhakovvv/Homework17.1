@@ -1,13 +1,17 @@
-#include "Publication.h"
-#include <vector>
+#include "Magazine.h"
 
-class Magazine : public Publication {
-public:
-    vector<string> getArticles() const;
-    void addArticle(const string& article);
+vector<string> Magazine::getArticles() const {
+    return articles;
+}
 
-    string createDescription() const override;
+void Magazine::addArticle(const string& article) {
+    articles.push_back(article);
+}
 
-private:
-    vector<string> articles;
-};
+string Magazine::createDescription() const {
+    string description = "Название: " + name + "\nАвтор: " + author + "\nГод издания: " + to_string(publicationYear) + "\nСтатьи:\n";
+    for (const string& article : articles) {
+        description += "- " + article + "\n";
+    }
+    return description;
+}
